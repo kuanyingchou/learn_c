@@ -49,7 +49,7 @@ void print(int x, int y, int **a) {
 }
 int main() {
    printf("hello, moon!\n");
-   printf("input dimenstions of matrix A and matrix B: ");
+   printf("input dimensions of matrix A and matrix B: ");
    int d[4];
    scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]);
    printf("got dimensions: A = %d by %d, B = %d by %d\n", 
