@@ -19,12 +19,12 @@ int **alloc_matrix(int x, int y) {
    return r;
 }
 
-int **multiply(int **a, int ax, int ay, int **b, int bx, int by) {
+int **multiply_matrix(int **a, int ax, int ay, int **b, int bx, int by) {
    //printf("r = %d x %d \n", ax, by);
-   int **r = (int**)alloc_matrix(ax, by);
-   int ar;
-   int bc;
-   int ac;
+   int **r = (int **)alloc_matrix(ax, by);
+   int ar; //row of a
+   int bc; //col of b
+   int ac; //col of a
    for(ar=0; ar<ax; ar++) {
       for(bc=0; bc<by; bc++) {
           int sum = 0;
@@ -65,7 +65,7 @@ int main() {
    printf("matrix B = \n");
    print(d[2], d[3], b);
 
-   int **r = multiply(a , d[0], d[1], b, d[2], d[3]);
+   int **r = multiply_matrix(a , d[0], d[1], b, d[2], d[3]);
    printf("A * B = \n");
    print(d[0], d[3], r);
 
@@ -73,4 +73,29 @@ int main() {
    free(b);
    free(r);
 }
+
+// Usage:
+// ken@ken-xubuntu1210:~/projects/learn_c$ ./a.out
+// hello, moon!
+// input dimensions of matrix A and matrix B: 3 2 2 3
+// got dimensions: A = 3 by 2, B = 2 by 3
+// enter matrix A (3 by 2)...
+// 1 2
+// 3 4
+// 5 6
+// matrix A =
+// 1 2
+// 3 4
+// 5 6
+// enter matrix B (2 by 3)...
+// 1 2 3
+// 4 5 6
+// matrix B =
+// 1 2 3
+// 4 5 6
+// A * B =
+// 9 12 15
+// 19 26 33
+// 29 40 51
+
 
