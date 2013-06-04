@@ -37,7 +37,7 @@ int **multiply_matrix(int **a, int ax, int ay, int **b, int bx, int by) {
    return r;
 }
 
-void print(int x, int y, int **a) {
+void print_matrix(int x, int y, int **a) {
    int i;
    int j;
    for(i=0; i<x; i++) {
@@ -50,24 +50,33 @@ void print(int x, int y, int **a) {
 int main() {
    printf("hello, moon!\n");
    printf("input dimensions of matrix A and matrix B: ");
+
    int d[4];
    scanf("%d %d %d %d", &d[0], &d[1], &d[2], &d[3]);
+
+   if(d[1] != d[2]) {
+      printf("error! dimensions didn't match!\n");
+      exit(1);
+   }
+
    printf("got dimensions: A = %d by %d, B = %d by %d\n", 
        d[0], d[1], d[2], d[3]);
-   int **a = alloc_matrix(d[0], d[1]);
-   int **b = alloc_matrix(d[2], d[3]);
+
    printf("enter matrix A (%d by %d)...\n", d[0], d[1]);
+   int **a = alloc_matrix(d[0], d[1]);
    input_matrix(d[0], d[1], a);
    printf("matrix A = \n");
-   print(d[0], d[1], a);
+   print_matrix(d[0], d[1], a);
+
    printf("enter matrix B (%d by %d)...\n", d[2], d[3]);
+   int **b = alloc_matrix(d[2], d[3]);
    input_matrix(d[2], d[3], b);
    printf("matrix B = \n");
-   print(d[2], d[3], b);
+   print_matrix(d[2], d[3], b);
 
-   int **r = multiply_matrix(a , d[0], d[1], b, d[2], d[3]);
    printf("A * B = \n");
-   print(d[0], d[3], r);
+   int **r = multiply_matrix(a , d[0], d[1], b, d[2], d[3]);
+   print_matrix(d[0], d[3], r);
 
    free(a);
    free(b);
